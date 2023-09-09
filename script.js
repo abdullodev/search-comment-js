@@ -1,6 +1,7 @@
 const body = document.querySelector(".products");
 const loader = document.querySelector(".loader_box");
-const search = document.querySelector("#search");
+const search = document.querySelector("#floatingInput");
+const loading = document.querySelector(".loader_com");
 
 let api = "https://jsonplaceholder.typicode.com/comments";
 
@@ -53,18 +54,19 @@ function showComments(data) {
 
 async function getById(id) {
   let commentBox = document.querySelector(".modal-body");
-
+  commentBox.innerHTML = `
+  <div class="loader_com">
+    <div class="lds-dual-ring"></div>
+  </div>
+  `;
   try {
     const response = await fetch(`${api}/${id}`);
     const result = await response.json();
 
-    if (response) {
-      document.querySelector(".loader_com").style.display = "none";
-      commentBox.innerHTML = ` 
+    commentBox.innerHTML = ` 
       <h4>${result.email}</h4>
       <h5>${result.name}</h5>
       <p>${result.body}</p>`;
-    }
   } catch (err) {
     console.log(err);
   }
