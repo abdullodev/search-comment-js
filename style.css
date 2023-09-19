@@ -6,7 +6,16 @@
 .containers {
   width: 100%;
 }
-
+.all_searched {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.all_searched h2 {
+  font-size: 14px;
+  font-weight: 600;
+}
 .containers .form-floating {
   width: 400px;
   margin: 0 auto;

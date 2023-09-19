@@ -2,6 +2,7 @@ const body = document.querySelector(".products");
 const loader = document.querySelector(".loader_box");
 const search = document.querySelector("#floatingInput");
 const loading = document.querySelector(".loader_com");
+const searchedCount = document.querySelector(".all_searched");
 
 let api = "https://jsonplaceholder.typicode.com/comments";
 
@@ -23,7 +24,7 @@ fetchData();
 let searched = [];
 
 search.addEventListener("keyup", (e) => {
-  if (search.value === "") {
+  if (e.target.value === "") {
     searched = comments;
   } else {
     searched = comments.filter((com) =>
@@ -31,6 +32,12 @@ search.addEventListener("keyup", (e) => {
     );
   }
   showComments(searched);
+
+  if (e.target.value !== "") {
+    searchedCount.innerHTML = `<h2>${searched.length} ta user topildi</h2>`;
+  } else {
+    searchedCount.innerHTML = "";
+  }
 });
 
 function showComments(data) {
