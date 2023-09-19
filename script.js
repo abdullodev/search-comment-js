@@ -24,13 +24,9 @@ fetchData();
 let searched = [];
 
 search.addEventListener("keyup", (e) => {
-  if (e.target.value === "") {
-    searched = comments;
-  } else {
-    searched = comments.filter((com) =>
-      com.email.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-  }
+  searched = comments.filter((com) =>
+    com.email.toLowerCase().includes(e.target.value.toLowerCase())
+  );
   showComments(searched);
 
   if (e.target.value !== "") {
