@@ -13,10 +13,10 @@ async function fetchData() {
   const data = await response.json();
 
   if (response) {
-    loader.style.display = "none";
-    comments = data;
-    showComments(data);
+    body.innerHTML = "";
   }
+  comments = data;
+  showComments(data);
 }
 
 fetchData();
@@ -41,12 +41,24 @@ function showComments(data) {
 
   if (data.length) {
     data?.map((item) => {
-      allProducts += ` 
-      <div class="product" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" onclick="getById(${item.id})">
-        <p>${item.email}</p>
-        <h1>${item.name}</h1>
-        <div class="info">${item.body}</div>
-      </div>`;
+      allProducts += `  
+      <div class="card" aria-hidden="true" >
+      <div class="card-body">
+        <h5 class="card-title">
+          <span class="col-6">${item.email}</span>
+        </h5>
+        <p class="card-text">
+          <span class="col-8">${item.name}</span>
+          <span class="col-12">${item.body}</span>
+        </p>
+        <a
+          class="btn btn-primary col-6"
+          data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" onclick="getById(${item.id})"
+        >See this product</a>
+      </div>
+    </div>
+      
+      `;
     });
 
     body.innerHTML = allProducts;
